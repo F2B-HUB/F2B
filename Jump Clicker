@@ -1,0 +1,531 @@
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame) wait(1)
+	game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+  end)
+  local choosed_egg
+  local EggList = {} do
+	  for i,v in pairs(game:GetService("Workspace").ScriptableObjects.Eggs:GetChildren()) do
+		  table.insert(EggList, v.Name)
+	  end
+  end
+  table.sort(EggList, function(a, b)
+	  return a > b
+  end)
+  
+  local L_9_ = loadstring(game:HttpGet('https://raw.githubusercontent.com/SmoxHub/Smox-UI/main/F2B'))()
+  
+  getgenv().Settings = {
+	["Auto Farm"] = false,
+	["Auto Rebirth"] = false,
+	["Rainbow"] = false,
+	["Auto Click"] = false,
+	["Upgrade Click"] = false,
+	["Rewards"] = false,
+	["Auto Hatch"] = false
+  }
+  
+  local L_10_ = L_9_:CreateWindow({
+	  Name = "F2B-HUB",
+	  LoadingTitle = "Jump Clicker 🌟",
+	  LoadingSubtitle = "By F2B",
+	  ConfigurationSaving = {
+		  Enabled = true,
+		  FolderName = "F2B",
+		  FileName = "F2B-HUB"
+	  },
+	  KeySystem = false,
+	  KeySettings = {
+		  Title = "F2B-HUB",
+		  Subtitle = "Key System",
+		  Note = "Join copied to clipboard (discord.gg/VbT6QVJqYN)",
+		  SaveKey = true,
+		  Key = "FK9YH*$#GRJI!@*"
+	  }
+  })
+  
+  local L_11_ = L_10_:CreateTab("Auto Farm", 4384392025)
+  local L_12_ = L_11_:CreateSection("Main")
+  
+  local L_13_ = L_11_:CreateToggle({
+	  Name = "Auto Farm",
+	  CurrentValue = false,
+	  Callback = function(Value)
+				   getgenv().Settings["Auto Farm"] = Value
+	  end,
+  })
+  
+  local L_14_ = L_11_:CreateToggle({
+	  Name = "Auto Rebirth",
+	  CurrentValue = false,
+	  Callback = function(Value)
+		  getgenv().Settings["Auto Rebirth"] = Value
+	  end,
+  })
+  
+  local L_15_ = L_11_:CreateToggle({
+	  Name = "Auto Click",
+	  CurrentValue = false,
+	  Callback = function(Value)
+		  getgenv().Settings["Auto Click"] = Value
+	  end,
+  })
+  
+  local L_16_ = L_11_:CreateToggle({
+	  Name = "Rainbow Skin",
+	  CurrentValue = false,
+	  Callback = function(Value)
+		  getgenv().Settings["Rainbow"] = Value
+	  end,
+  })
+  
+  local L_17_ = L_11_:CreateToggle({
+	  Name = "Auto Upgrade Clicks",
+	  CurrentValue = false,
+	  Callback = function(Value)
+		  getgenv().Settings["Upgrade Click"] = Value
+	  end,
+  })
+  
+  local L_18_ = L_11_:CreateToggle({
+	  Name = "Auto Hatch",
+	  CurrentValue = false,
+	  Callback = function(Value)
+		  getgenv().Settings["Auto Hatch"] = Value
+	  end,
+  })
+  local L_19_ = L_11_:CreateDropdown({
+	  Name = "Selected Pet",
+	  Options = {
+		  unpack(EggList)
+	  },
+	  CurrentOption = "...",
+	  Callback = function(egg)
+		  choosed_egg = egg
+	  end,
+  })
+  
+  local L_20_ = L_10_:CreateTab("Player", 7743875962)
+  local L_21_ = L_20_:CreateSection("Player Config")
+  
+  local L_22_ = L_20_:CreateToggle({
+	  Name = "E-FLY",
+	  CurrentValue = false,
+	  Flag = "",
+	  Callback = function(L_56_arg0)
+		  sex2 = L_56_arg0
+		  local L_57_ = 0
+		  local L_58_ = game.Players
+		  local L_59_ = L_58_.LocalPlayer
+		  local L_60_ = L_59_:GetMouse()
+		  L_60_.KeyDown:connect(function(L_61_arg0)
+			  if L_61_arg0:lower() == 'e' then
+				  L_57_ = L_57_ + 1
+				  getgenv().Fly = false
+				  if sex2 then
+					  local L_62_ = L_59_.Character.UpperTorso
+					  local L_63_ = {
+						  F = 0,
+						  B = 0,
+						  L = 0,
+						  R = 0
+					  }
+					  local L_64_ = {
+						  F = 0,
+						  B = 0,
+						  L = 0,
+						  R = 0
+					  }
+					  local L_65_ = 5
+					  local function L_66_func()
+						  getgenv().Fly = true
+						  local L_67_ = Instance.new('BodyGyro', L_62_)
+						  local L_68_ = Instance.new('BodyVelocity', L_62_)
+						  L_67_.P = 6561
+						  L_67_.maxTorque = Vector3.new(387420489, 387420489, 387420489)
+						  L_67_.cframe = L_62_.CFrame
+						  L_68_.velocity = Vector3.new(0, 0.1, 0)
+						  L_68_.maxForce = Vector3.new(387420489, 387420489, 387420489)
+						  spawn(function()
+							  repeat
+								  wait()
+								  L_59_.Character.Humanoid.PlatformStand = false
+								  if L_63_.L + L_63_.R ~= 0 or L_63_.F + L_63_.B ~= 0 then
+									  L_65_ = 200
+								  elseif not (L_63_.L + L_63_.R ~= 0 or L_63_.F + L_63_.B ~= 0) and L_65_ ~= 0 then
+									  L_65_ = 0
+								  end
+								  if (L_63_.L + L_63_.R) ~= 0 or (L_63_.F + L_63_.B) ~= 0 then
+									  L_68_.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (L_63_.F + L_63_.B)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(L_63_.L + L_63_.R, (L_63_.F + L_63_.B) * 0.2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) * L_65_
+									  L_64_ = {
+										  F = L_63_.F,
+										  B = L_63_.B,
+										  L = L_63_.L,
+										  R = L_63_.R
+									  }
+								  elseif (L_63_.L + L_63_.R) == 0 and (L_63_.F + L_63_.B) == 0 and L_65_ ~= 0 then
+									  L_68_.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (L_64_.F + L_64_.B)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(L_64_.L + L_64_.R, (L_64_.F + L_64_.B) * 0.2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) * L_65_
+								  else
+									  L_68_.velocity = Vector3.new(0, 0.1, 0)
+								  end
+								  L_67_.cframe = game.Workspace.CurrentCamera.CoordinateFrame
+							  until not getgenv().Fly
+							  L_63_ = {
+								  F = 0,
+								  B = 0,
+								  L = 0,
+								  R = 0
+							  }
+							  L_64_ = {
+								  F = 0,
+								  B = 0,
+								  L = 0,
+								  R = 0
+							  }
+							  L_65_ = 0
+							  L_67_:destroy()
+							  L_68_:destroy()
+							  L_59_.Character.Humanoid.PlatformStand = false
+						  end)
+					  end
+					  L_60_.KeyDown:connect(function(L_69_arg0)
+						  if L_69_arg0:lower() == 'w' then
+							  L_63_.F = 1
+						  elseif L_69_arg0:lower() == 's' then
+							  L_63_.B = -1
+						  elseif L_69_arg0:lower() == 'a' then
+							  L_63_.L = -1
+						  elseif L_69_arg0:lower() == 'd' then
+							  L_63_.R = 1
+						  end
+					  end)
+					  L_60_.KeyUp:connect(function(L_70_arg0)
+						  if L_70_arg0:lower() == 'w' then
+							  L_63_.F = 0
+						  elseif L_70_arg0:lower() == 's' then
+							  L_63_.B = 0
+						  elseif L_70_arg0:lower() == 'a' then
+							  L_63_.L = 0
+						  elseif L_70_arg0:lower() == 'd' then
+							  L_63_.R = 0
+						  end
+					  end)
+					  L_66_func()
+					  if L_57_ == 2 then
+						  getgenv().Fly = false
+						  L_57_ = 0
+					  end
+				  end
+			  end
+		  end)
+	  end
+  })
+  local L_23_ = L_20_:CreateToggle({
+	  Name = "Infinite-Jump",
+	  CurrentValue = false,
+	  Flag = "",
+	  Callback = function(L_71_arg0)
+		  Infinite = L_71_arg0
+		  game:GetService("UserInputService").JumpRequest:connect(function()
+			  if Infinite then
+				  game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+			  end
+		  end) 
+	  end
+  })
+  local L_23_ = L_20_:CreateToggle({
+	  Name = "Auto Collect Rewards",
+	  CurrentValue = false,
+	  Flag = "",
+	  Callback = function(Value)
+		  getgenv().Settings["Rewards"] = Value
+	  end
+  })
+  local L_24_ = L_20_:CreateToggle({
+	  Name = "Basic-Player-Speed",
+	  CurrentValue = false,
+	  Flag = "",
+	  Callback = function(L_72_arg0)
+		  L_10_.Speed = L_72_arg0
+	  end
+  })
+  local L_25_ = game:GetService"Players".LocalPlayer
+  local L_26_ = game:GetService"UserInputService"
+  L_26_.InputBegan:connect(
+	  function(L_73_arg0)
+	  if L_73_arg0.UserInputType == Enum.UserInputType.Keyboard and L_73_arg0.KeyCode == Enum.KeyCode.W then
+		  _G.Running = true
+	  end
+  end)
+  L_26_.InputEnded:connect(
+	  function(L_74_arg0)
+	  if L_74_arg0.UserInputType == Enum.UserInputType.Keyboard and L_74_arg0.KeyCode == Enum.KeyCode.W then
+		  _G.Running = false
+	  end
+  end)
+  task.spawn(
+	  function() 
+	  while wait(0.005) do
+		  if L_10_.Speed and _G.Running == true and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.HumanoidRootPart then
+			  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 0.36
+			  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 0.36
+			  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 0.36
+		  end
+	  end
+  end)
+  local L_27_ = L_20_:CreateSlider({
+	  Name = "Player-Speed",
+	  Range = {
+		  30,
+		  200
+	  },
+	  Increment = 1,
+	  Suffix = "speed",
+	  CurrentValue = 0,
+	  Flag = "Slider1", 
+	  Callback = function(L_75_arg0)
+		  getgenv().changedwalkspeed = true
+		  if tonumber(L_75_arg0) then
+			  getgenv().walkspeed = tonumber(L_75_arg0)
+		  end
+	  end,
+  })
+  local L_28_ = L_20_:CreateSlider({
+	  Name = "Jump-Power",
+	  Range = {
+		  30,
+		  200
+	  },
+	  Increment = 1,
+	  Suffix = "speed",
+	  CurrentValue = 0,
+	  Flag = "Slider1", 
+	  Callback = function(L_76_arg0)
+		  getgenv().changedjumppower = true
+		  if tonumber(L_76_arg0) then
+			  getgenv().jumppower = tonumber(L_76_arg0)
+		  end
+	  end,
+  })
+  game:GetService("RunService").RenderStepped:Connect(function()
+	  if game.Players.LocalPlayer.Character.Humanoid.Health == 0 and getgenv().godmode then
+		  local L_77_ = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+		  game.Workspace.Remote.loadchar:InvokeServer(game.Players.LocalPlayer.Name)
+		  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(L_77_)
+	  end
+	  if getgenv().noclip then
+		  if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+			  game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(11)
+		  end
+	  end
+	  if getgenv().changedwalkspeed then
+		  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = getgenv().walkspeed
+	  end
+	  if getgenv().changedjumppower then
+		  game.Players.LocalPlayer.Character.Humanoid.UseJumpPower = true
+		  game.Players.LocalPlayer.Character.Humanoid.JumpPower = getgenv().jumppower
+	  end
+	  if getgenv().changedhipheight then
+		  game.Players.LocalPlayer.Character.Humanoid.HipHeight = getgenv().hipheight
+	  end
+  end)
+  
+  local L_29_ = L_10_:CreateTab("Server", 7734053426)
+  local L_30_ = L_29_:CreateSection("Server")
+  
+  local L_31_ = L_29_:CreateButton({
+	  Name = "Rejoin-Server",
+	  Callback = function()
+		  game:GetService("TeleportService"):Teleport(game.PlaceId, Player)
+	  end,
+  })
+  local L_32_ = L_29_:CreateButton({
+	  Name = "Server-Hop",
+	  Callback = function()
+		  local L_78_ = game.PlaceId
+		  local L_79_ = {}
+		  local L_80_ = ""
+		  local L_81_ = os.date("!*t").hour
+		  local L_82_ = false
+		  local L_83_ = pcall(function()
+			  L_79_ = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+		  end)
+		  if not L_83_ then
+			  table.insert(L_79_, L_81_)
+			  writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(L_79_))
+		  end
+		  function TPReturner()
+			  local L_84_;
+			  if L_80_ == "" then
+				  L_84_ = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. L_78_ .. '/servers/Public?sortOrder=Asc&limit=100'))
+			  else
+				  L_84_ = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. L_78_ .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. L_80_))
+			  end
+			  local L_85_ = ""
+			  if L_84_.nextPageCursor and L_84_.nextPageCursor ~= "null" and L_84_.nextPageCursor ~= nil then
+				  L_80_ = L_84_.nextPageCursor
+			  end
+			  local L_86_ = 0;
+			  for L_87_forvar0, L_88_forvar1 in pairs(L_84_.data) do
+				  local L_89_ = true
+				  L_85_ = tostring(L_88_forvar1.id)
+				  if tonumber(L_88_forvar1.maxPlayers) > tonumber(L_88_forvar1.playing) then
+					  for L_90_forvar0, L_91_forvar1 in pairs(L_79_) do
+						  if L_86_ ~= 0 then
+							  if L_85_ == tostring(L_91_forvar1) then
+								  L_89_ = false
+							  end
+						  else
+							  if tonumber(L_81_) ~= tonumber(L_91_forvar1) then
+								  local L_92_ = pcall(function()
+									  delfile("NotSameServers.json")
+									  L_79_ = {}
+									  table.insert(L_79_, L_81_)
+								  end)
+							  end
+						  end
+						  L_86_ = L_86_ + 1
+					  end
+					  if L_89_ == true then
+						  table.insert(L_79_, L_85_)
+						  wait()
+						  pcall(function()
+							  writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(L_79_))
+							  wait()
+							  game:GetService("TeleportService"):TeleportToPlaceInstance(L_78_, L_85_, game.Players.LocalPlayer)
+						  end)
+						  wait(4)
+					  end
+				  end
+			  end
+		  end
+		  function Teleport()
+			  while wait() do
+				  pcall(function()
+					  TPReturner()
+					  if L_80_ ~= "" then
+						  TPReturner()
+					  end
+				  end)
+			  end
+		  end
+		  Teleport() 
+	  end,
+  })
+  local L_33_ = L_29_:CreateSection("Updates")
+  local L_34_ = L_29_:CreateParagraph({
+	  Title = "Fixed",
+	  Content = "[-] Auto Farm [-] Fixed Auto Hatch [-] Auto Rebirth"
+  })
+  local L_35_ = L_29_:CreateParagraph({
+	  Title = "Added",
+	  Content = "[+] Added Auto Collect Rewards [+] Added Player Section"
+  })
+  local L_36_ = L_29_:CreateParagraph({
+	  Title = "Bugs",
+	  Content = "[>] No Bugs Found"
+  })
+   
+  spawn(function()
+	  while task.wait() do
+		  pcall(function()
+			  if getgenv().Settings["Auto Hatch"] then
+		  game:GetService("ReplicatedStorage").Packages._Index["sleitnick_knit@1.4.7"].knit.Services.PetService.RF.UnboxEgg:InvokeServer(workspace.ScriptableObjects.Eggs[choosed_egg]) 
+			  end
+		  end)
+	  end
+  end) 
+  spawn(function()
+	  while task.wait() do
+		  pcall(function()
+			  if getgenv().Settings["Auto Click"] then
+		  game:GetService("ReplicatedStorage").Packages._Index["sleitnick_knit@1.4.7"].knit.Services.JumpService.RE.Tap:FireServer()
+			  end
+		  end)
+	  end
+  end) 
+  spawn(function()
+	while task.wait() do
+	  pcall(function()
+		if getgenv().Settings["Upgrade Click"] then
+		  game:GetService("ReplicatedStorage").Packages._Index["sleitnick_knit@1.4.7"].knit.Services.UpgradeService.RF.UpgradeClickerLvl:InvokeServer() 
+		end
+	  end)
+	end
+  end)
+  spawn(function()
+	while task.wait() do
+	  pcall(function()
+		if getgenv().Settings["Auto Rebirth"] then
+		  game:GetService("ReplicatedStorage").Packages._Index["sleitnick_knit@1.4.7"].knit.Services.RebirthService.RF.Rebirth:InvokeServer()
+		end
+	  end)
+	end
+  end)
+  spawn(function()
+	while task.wait() do
+	  pcall(function()
+		if getgenv().Settings["Rewards"] then
+  game:GetService("ReplicatedStorage").Events.ForServer.ClaimTimedReward:FireServer(1)
+  game:GetService("ReplicatedStorage").Events.ForServer.ClaimTimedReward:FireServer(2)
+  game:GetService("ReplicatedStorage").Events.ForServer.ClaimTimedReward:FireServer(3)
+  game:GetService("ReplicatedStorage").Events.ForServer.ClaimTimedReward:FireServer(4)
+  game:GetService("ReplicatedStorage").Events.ForServer.ClaimTimedReward:FireServer(5)
+  game:GetService("ReplicatedStorage").Events.ForServer.ClaimTimedReward:FireServer(6)
+  game:GetService("ReplicatedStorage").Events.ForServer.ClaimTimedReward:FireServer(7)
+  game:GetService("ReplicatedStorage").Events.ForServer.ClaimTimedReward:FireServer(8)
+  game:GetService("ReplicatedStorage").Events.ForServer.ClaimTimedReward:FireServer(9)
+		end
+	  end)
+	end
+  end)
+  spawn(function()
+	while task.wait() do
+	  pcall(function()
+		if getgenv().Settings["Auto Farm"] then
+		  if game:GetService("Workspace").ScriptableObjects.Barrir.SecondLevel.Transparency == 1 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4, 2000000, 48)task.wait(0.1)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4, 3000000, -165)task.wait(0.1)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4, 2000000, -370)task.wait(0.1)
+			for i = 1,10 do wait(0.1)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4, 2000000, -575)
+			end
+	  else
+			wait(1)
+		  end
+		end
+	  end)
+	end
+  end)
+  spawn(function()
+	  while wait(0.0001) do
+		  pcall(function()
+			  if getgenv().Settings["Rainbow"] then
+				  local L_89_ = game:GetService("Players").LocalPlayer
+				  for L_92_forvar0, L_93_forvar1 in next, L_89_.Character:GetChildren() do
+					  if L_93_forvar1:IsA("Part") or L_93_forvar1:IsA("MeshPart") then
+						  L_93_forvar1.Material = "ForceField"
+					  end
+				  end
+				  for L_94_forvar0, L_95_forvar1 in next, L_89_.Character.UpperTorso:GetChildren() do
+					  if L_95_forvar1:IsA("Part") or L_95_forvar1:IsA("MeshPart") then
+						  L_95_forvar1.Material = "ForceField"
+					  end
+				  end
+				  local L_90_ = tick() % 10 / 10
+				  local L_91_ = Color3.fromHSV(L_90_, 1, 1)
+				  L_89_.Character.UpperTorso.Anchored = false
+				  L_89_.Character.UpperTorso.Color = L_91_
+				  L_89_.Character.Head.CanTouch = true
+				  L_89_.Character.Head.Color = L_91_
+				  L_89_.Character.RightHand.Anchored = false
+				  L_89_.Character.RightHand.Color = L_91_
+				  L_89_.Character.LeftHand.Anchored = false
+				  L_89_.Character.LeftHand.Color = L_91_
+				  L_89_.Character.LeftFoot.CanTouch = true
+				  L_89_.Character.LeftFoot.Color = L_91_
+				  L_89_.Character.RightFoot.CanTouch = true
+				  L_89_.Character.RightFoot.Color = L_91_
+			  end
+		  end)
+	  end
+  end)
