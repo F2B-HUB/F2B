@@ -1,1 +1,8 @@
--- HUB
+local Games = {
+    [9529019408] = "F2B/main/Zombie%20Army%20Simulator";
+
+}
+local Supported = Games[game.PlaceId] or false
+if Supported ~= false then
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/F2B-HUB/' .. Supported))()
+end
