@@ -7,6 +7,7 @@ local Games = {
     [10674065190] = "Clicker%20Run";
     [11542692507] = "Anime%20Souls%20Simulator";
     [3101667897] = "Legends%20Of%20Speed";
+    [11767933308] = "Smash%20%26%20Grab";
 }
 local Supported = Games[game.PlaceId] or false
 if Supported ~= false then
