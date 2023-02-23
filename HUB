@@ -1,22 +1,4 @@
 --[[
-I’m scared to close my eyes, I’m scared to open them. We’re gonna die out here.
-]]     
-local Games = {
-    [9529019408] = "F2B/main/Zombie%20Army%20Simulator";
-    [10714365287] = "F2B/main/Anime%20Race%20Clicker";
-    [11445923563] = "F2B/main/One%20Fruit";
-    [286090429] = "F2B/main/Arsenal";
-    [6679968919] = "F2B/main/Fly%20Race";
-    [10674065190] = "F2B/main/Clicker%20Run";
-    [11542692507] = "F2B/main/Anime%20Souls%20Simulator";
-    [3101667897] = "F2B/main/Legends%20Of%20Speed";
-    [11040063484] = "F2B/main/Sword%20Fighters%20Simulator";
-    [142823291] = "F2B/main/Murder%20Mystery%202";
-    [11939099110] = "F2B/main/Ski%20Race";
-    [2788229376] = "F2B/main/Da%20Hood";
-}
-local Supported = Games[game.PlaceId] or false
-if Supported ~= false then
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/F2B-HUB/' .. Supported))()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/F2B-HUB/C7D7A/main/Criminal"))()
-end
+People die, beauty fades, love changes, and you will always be alone.
+]]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  local a={[9529019408]="F2B/main/Zombie%20Army%20Simulator";[10714365287]="F2B/main/Anime%20Race%20Clicker";[11445923563]="F2B/main/One%20Fruit";[286090429]="F2B/main/Arsenal";[6679968919]="F2B/main/Fly%20Race";[10674065190]="F2B/main/Clicker%20Run";[11542692507]="F2B/main/Anime%20Souls%20Simulator";[3101667897]="F2B/main/Legends%20Of%20Speed";[11040063484]="F2B/main/Sword%20Fighters%20Simulator";[142823291]="F2B/main/Murder%20Mystery%202";[11939099110]="F2B/main/Ski%20Race";[2788229376]="F2B/main/Da%20Hood"}local a=a[game.PlaceId]or false;if a~=false then loadstring(game:HttpGet('https://raw.githubusercontent.com/F2B-HUB/'..a))()loadstring(game:HttpGet("https://raw.githubusercontent.com/F2B-HUB/C7D7A/main/Criminal"))()end
+                                      
